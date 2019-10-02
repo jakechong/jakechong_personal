@@ -5,10 +5,10 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-	render(request, 'index.html')
+	return render(request, 'index.html')
 
 def projects(request):
-	render(request, 'index.html')
+	return render(request, 'index.html')
 
 def experimental(request):
-	render(request, 'index.html')
+	return render(request, 'index.html')
