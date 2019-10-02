@@ -1,1 +1,3 @@
-Django==1.11.23
+django
+gunicorn
+django-heroku
