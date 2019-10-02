@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from website.views import website_views
+from website import views as website_views
 
 website_urls = [
     url(r'^/?$', website_views.home, name="home"),
