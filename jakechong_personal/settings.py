@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -119,15 +120,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+STATIC_ROOT = 'assets'
+STATICFILES_DIRS = ()
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 TEMPLATES = [
     {
@@ -151,3 +153,12 @@ TEMPLATES = [
         }
     },
 ]
+
+# AWS config
+AWS_STORAGE_BUCKET_NAME = 'jakechong-personal-staticfiles'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_ACCESS_KEY_ID = 'AKIAWVWOLGM5D2OLJ7RY'
+AWS_SECRET_ACCESS_KEY = '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'
+
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)

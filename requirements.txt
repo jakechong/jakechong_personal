@@ -2,3 +2,5 @@ django
 gunicorn
 django-heroku
 django_compressor
+django-storages
+boto3
